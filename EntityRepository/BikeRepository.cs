@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace EntityRepository
 {
-    public class BikeRepository
+    public class BikeRepository : IBikeRepository
     {
         private readonly Database _db;
 

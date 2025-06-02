@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DataBaseContext\DataBaseContext.csproj" />
+    <ProjectReference Include="..\EntityRepository\EntityRepository.csproj" />
   </ItemGroup>
 
 </Project>
