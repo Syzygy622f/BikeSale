@@ -48,11 +48,22 @@ namespace EntityRepository
             return bike;
         }
 
-        public async Task<bool> createBikeAsync(Bike CreateBike)
+        public async Task<bool> createBikeAsync(BikeDto CreateBike)
         {
+            Bike bike = new Bike
+            {
+                Brand = CreateBike.Brand,
+                Colour = CreateBike.Colour,
+                Description = CreateBike.Description,
+                Horsepower = CreateBike.Horsepower,
+                Model = CreateBike.Model,
+                Year = CreateBike.Year
+            };
+
+
             try
             {
-                await _db.bikes.AddAsync(CreateBike);
+                await _db.bikes.AddAsync(bike);
             }
             catch (Exception)
             {
@@ -62,7 +73,7 @@ namespace EntityRepository
             return true;
         }
 
-        public async Task<bool> UpdateBikeAsync(Bike updatebike)
+        public async Task<bool> UpdateBikeAsync(BikeDto updatebike)
         {
             //updatebike har alle values, ændret og ikke ændret
             Bike bike = new Bike
@@ -74,7 +85,6 @@ namespace EntityRepository
                 Horsepower = updatebike.Horsepower,
                 Description = updatebike.Description,
                 Colour = updatebike.Colour,
-                Userid = updatebike.Userid
             };
 
 

@@ -49,7 +49,7 @@ namespace DataBaseContext.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Userid")
+                    b.Property<int?>("Userid")
                         .HasColumnType("int");
 
                     b.Property<int>("Year")
@@ -102,9 +102,7 @@ namespace DataBaseContext.Migrations
                 {
                     b.HasOne("Model.User", "User")
                         .WithMany("bikes")
-                        .HasForeignKey("Userid")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("Userid");
 
                     b.Navigation("User");
                 });

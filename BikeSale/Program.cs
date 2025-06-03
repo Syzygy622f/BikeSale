@@ -1,6 +1,7 @@
 using DataBaseContext;
 using EntityRepository;
 using Microsoft.EntityFrameworkCore;
+using System.Runtime.Intrinsics.X86;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,6 +22,9 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
+
+    app.UseSwaggerUI(options =>
+    options.SwaggerEndpoint("/openapi/v1.json", "OpenAPI V1"));
 }
 
 app.UseHttpsRedirection();

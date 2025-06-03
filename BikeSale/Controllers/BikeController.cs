@@ -1,4 +1,5 @@
-﻿using EntityRepository;
+﻿using DtoModel;
+using EntityRepository;
 using Microsoft.AspNetCore.Mvc;
 using Model;
 using System.Net;
@@ -7,9 +8,9 @@ namespace BikeSale.Controllers
 {
     [ApiController]
     [Route("Bikes")]
-    public class BikeController : Controller
+    public class BikeController : ControllerBase
     {
-        //bruger ikke en dto til bike, da bike har alt relevant data og har ikke noget anden forbindelse der er relevant for nu.
+        
         IBikeRepository _Repo;
 
         public BikeController(IBikeRepository repo)
@@ -18,7 +19,7 @@ namespace BikeSale.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAsync()
+        public async Task<IActionResult> GetAsync()//skal ændre repo til at matche dto
         {
             List<Bike> bikes = await _Repo.GetBikesAsync();
 
@@ -43,7 +44,7 @@ namespace BikeSale.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> PostAsync(Bike bike)
+        public async Task<IActionResult> PostAsync(BikeDto bike)
         {
             bool success = false;
 
@@ -66,7 +67,7 @@ namespace BikeSale.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> UpdateAsync(Bike bike)
+        public async Task<IActionResult> UpdateAsync(BikeDto bike)
         {
             bool success = false;
             if (bike != null)
@@ -83,6 +84,26 @@ namespace BikeSale.Controllers
                 {
                     return Ok();
                 }
+            }
+            return BadRequest("didn't give the relevant values needed to update the item");
+        }
+
+        [HttpDelete]
+        public async Task<IActionResult> DeleteAsync(int id)
+        {
+            bool success = false;
+            try
+            {
+                success = await _Repo.DeleteBikeAsync(id);
+            }
+            catch (Exception)
+            {
+
+                return NotFound("an error come, please try again later");
+            }
+            if (success)
+            {
+                return Ok();
             }
             return BadRequest("didn't give the relevant values needed to update the item");
         }
