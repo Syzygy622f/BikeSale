@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace DataBaseContext.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class initialcreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -41,7 +41,7 @@ namespace DataBaseContext.Migrations
                     Horsepower = table.Column<int>(type: "int", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Colour = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Userid = table.Column<int>(type: "int", nullable: false)
+                    Userid = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -50,8 +50,7 @@ namespace DataBaseContext.Migrations
                         name: "FK_bikes_users_Userid",
                         column: x => x.Userid,
                         principalTable: "users",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateIndex(
