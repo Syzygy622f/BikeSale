@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="8.1.2" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\DataBaseContext\DataBaseContext.csproj" />
     <ProjectReference Include="..\DtoModel\DtoModel.csproj" />
     <ProjectReference Include="..\Model\Model.csproj" />

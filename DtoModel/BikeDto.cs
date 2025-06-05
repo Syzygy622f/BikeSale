@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Model
+namespace DtoModel
 {
-    public class Bike
+    public class BikeDto
     {
         public int Id { get; set; }
         public string Brand { get; set; }
@@ -15,7 +15,5 @@ namespace Model
         public int Horsepower { get; set; }
         public string Description { get; set; }
         public string Colour { get; set; }
-        public int? Userid { get; set; }
-        public User User { get; set; }
     }
 }
